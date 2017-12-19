@@ -81,12 +81,19 @@ class IssueAdd extends React.Component {
 class IssueList extends React.Component {
     constructor() {
         super();
-        this.state = {issues: issues};
+        this.state = {issues: []};
 
-        for(var i = 0; i < 5; i++) {
-            setTimeout(this.createTestIssue.bind(this), 2000 * i);
-        }
-        
+        setTimeout(this.createTestIssue.bind(this), 2000);
+    }
+
+    componentDidMount() {
+        this.loadData();
+    }
+
+    loadData() {
+        setTimeout(()=> {
+            this.setState({issues: issues});
+        }, 500);
     }
 
     createIssue(newIssue) {
